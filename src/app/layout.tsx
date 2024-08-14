@@ -20,3 +20,32 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+// src/app/layout.tsx
+// import { ReactNode } from 'react';
+// import { ThemeProvider, createTheme } from '@mui/material/styles';
+// import CssBaseline from '@mui/material/CssBaseline';
+// import '../styles/globals.css';
+
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: '#1976d2',
+//     },
+//   },
+// });
+
+// const RootLayout = ({ children }: { children: ReactNode }) => (
+//   <html lang="en">
+//     <body>
+//       <ThemeProvider theme={theme}>
+//         <CssBaseline />
+//         {children}
+//       </ThemeProvider>
+//     </body>
+//   </html>
+// );
+
+// export default RootLayout;
+
