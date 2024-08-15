@@ -41,7 +41,6 @@ const Pantry = () => {
 
   return (
     <div>
-      <h1>Pantry Management</h1>
       <TextField
         label="Item Name"
         value={newItem.name}
