@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Pantry = () => {
+  const [todo, setTodo] = useState([])
   return (
     <div>Pantry</div>
   )
