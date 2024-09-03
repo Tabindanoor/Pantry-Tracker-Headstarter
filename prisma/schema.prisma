@@ -14,20 +14,17 @@ generator client {
 }
 
 model User {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  email         String   @unique
-  name          String?
-  password      String
-  image         String?
-  tasks         Task[]
+  id          String   @id @default(auto()) @map("_id") @testable
+  email       String   @unique
+  name        String?
+  password    String?
+  todos       Todo[]
 }
 
-model Task {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+model Todo {
+  id          String   @id @default(auto()) @map("_id") @testable
   title       String
   completed   Boolean  @default(false)
   userId      String
   user        User     @relation(fields: [userId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 }
