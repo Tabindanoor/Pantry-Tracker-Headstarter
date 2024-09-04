@@ -1,60 +1,24 @@
-// "use client"
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchTasks, addTask, deleteTask } from '../../slices/taskSlice';
-// import { RootState } from '../../context/store';
-// import { useSession } from 'next-auth/react';
-// import { useState } from 'react';
+"use client";
 
-// export default function Home() {
-//   const { data: session } = useSession();
-//   const dispatch = useDispatch();
-//   const tasks = useSelector((state: RootState) => state.tasks.tasks);
-//   const [newTask, setNewTask] = useState('');
+import { signIn } from "next-auth/react";
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-//   useEffect(() => {
-//     if (session) {
-//       dispatch(fetchTasks());
-//     }
-//   }, [dispatch, session]);
+export default function SignIn() {
+  const { data: session } = useSession();
+  const router = useRouter();
 
-//   const handleAddTask = () => {
-//     dispatch(addTask({ title: newTask }));
-//     setNewTask('');
-//   };
+  useEffect(() => {
+    if (session) {
+      router.push("/");
+    }
+  }, [session, router]);
 
-//   const handleDeleteTask = (id: string) => {
-//     dispatch(deleteTask(id));
-//   };
-
-//   return (
-//     <div className="container mx-auto p-4">
-//       <h1 className="text-2xl font-bold">Pantry Tracker</h1>
-//       {/* {session ? ( */}
-//         <div>
-//           <input
-//             type="text"
-//             value={newTask}
-//             onChange={(e) => setNewTask(e.target.value)}
-//             className="border p-2"
-//           />
-//           <button onClick={handleAddTask} className="ml-2 bg-blue-500 text-white p-2 rounded">
-//             Add Task
-//           </button>
-//           <ul>
-//             {tasks.map((task) => (
-//               <li key={task.id} className="flex justify-between items-center">
-//                 <span>{task.title}</span>
-//                 <button onClick={() => handleDeleteTask(task.id)} className="bg-red-500 text-white p-2 rounded">
-//                   Delete
-//                 </button>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-//        {/* ) : (
-//          <p>Please sign in to manage your tasks.</p>
-//        )} */}
-//     </div>
-//   );
-// }
+  return (
+    <div>
+      <h1>Sign In</h1>
+      <button onClick={() => signIn("google")}>Sign in with Google</button>
+    </div>
+  );
+}
