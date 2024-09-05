@@ -1,26 +1,57 @@
-import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { PrismaClient } from '@prisma/client';
+// import NextAuth from "next-auth";
+// import { authConfig } from "@/lib/auth.config";
+// import { PrismaAdapter } from "@auth/prisma-adapter";
+// import db from "@/lib/db";
 
-const prisma = new PrismaClient();
+// export const { handlers, signIn, signOut, auth } = NextAuth({
+//   ...authConfig,
+//   adapter: PrismaAdapter(db), // Using Prisma adapter for database connection
+//   session: {
+//     strategy: "jwt", // Using JWT-based session strategy
+//   },
+//   pages: {
+//     signIn: "/login", // Define custom sign-in page
+//   },
+//   callbacks: {
+//     async jwt({ token, user }) {
+//       if (user) {
+//         // Handling the user logic here
+//         // Get user from DB with the email
+//         const dbUser = await db.user.findUnique({
+//           where: { email: user.email },
+//         });
 
-export const authOptions = {
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-  ],
-  adapter: PrismaAdapter(prisma),
-  session: {
-    strategy: 'jwt',
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-};
+//         // If no user exists, create a new one
+//         if (!dbUser) {
+//           const newUser = await db.user.create({
+//             data: { email: user.email, name: user.name },
+//           });
 
-// Create the handler for both GET and POST
-const handler = NextAuth(authOptions);
+//           token.id = newUser.id; // Setting user ID to the token
+//         } else {
+//           token.id = dbUser.id; // Assign existing user ID to token
+//         }
+//       }
 
-// Explicitly export for both GET and POST requests
-export { handler as GET, handler as POST };
+//       return token;
+//     },
+
+//     async session({ session, token }) {
+//       if (token) {
+//         session.user.id = token.id; // Assign token data to session
+//       }
+
+//       return session;
+//     },
+
+//     redirect() {
+//       return "/login"; // Define redirect behavior
+//     },
+//   },
+// });
+
+
+
+import { handlers } from "@/auth";
+
+export const { GET, POST } = handlers;
