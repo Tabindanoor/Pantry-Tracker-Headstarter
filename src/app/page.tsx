@@ -1,76 +1,85 @@
-// "use client"
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchTasks, addTask, deleteTask } from '../slices/taskSlice';
-// import { RootState } from '../context/store';
-// import { useSession } from 'next-auth/react';
-// import { useState } from 'react';
+"use client"; // Ensure the page is a client component
+
+// import Link from 'next/link';
+// import { signIn, signOut, useSession } from 'next-auth/react';
 
 // export default function Home() {
 //   const { data: session } = useSession();
-//   const dispatch = useDispatch();
-//   const tasks = useSelector((state: RootState) => state.tasks.tasks);
-//   const [newTask, setNewTask] = useState('');
 
-//   useEffect(() => {
-//     if (session) {
-//       dispatch(fetchTasks());
-//     }
-//   }, [dispatch, session]);
+//   if (session) {
+//     return (
+//       <div className="flex flex-col items-center justify-center min-h-screen">
+//         <h1 className="text-2xl">Signed in as {session.user?.name}</h1>
+//         <img src={session.user?.image || ""} alt="Profile Image" className="rounded-full" />
 
-//   const handleAddTask = () => {
-//     dispatch(addTask({ title: newTask }));
-//     setNewTask('');
-//   };
+//         <nav className="mt-4 space-x-4">
+//           <Link href="/dashboard" className="px-4 py-2 bg-green-500 text-white rounded">
+//             Go to Dashboard
+//           </Link>
+//           <Link href="/profile" className="px-4 py-2 bg-blue-500 text-white rounded">
+//             View Profile
+//           </Link>
+//         </nav>
 
-//   const handleDeleteTask = (id: string) => {
-//     dispatch(deleteTask(id));
-//   };
+//         <button onClick={() => signOut()} className="mt-4 px-4 py-2 bg-red-500 text-white rounded">
+//           Sign out
+//         </button>
+//       </div>
+//     );
+//   }
 
 //   return (
-//     <div className="container mx-auto p-4">
-//       <h1 className="text-2xl font-bold">Pantry Tracker</h1>
-//       {session ? (
-//         <div>
-//           <input
-//             type="text"
-//             value={newTask}
-//             onChange={(e) => setNewTask(e.target.value)}
-//             className="border p-2"
-//           />
-//           <button onClick={handleAddTask} className="ml-2 bg-blue-500 text-white p-2 rounded">
-//             Add Task
-//           </button>
-//           <ul>
-//             {tasks.map((task) => (
-//               <li key={task.id} className="flex justify-between items-center">
-//                 <span>{task.title}</span>
-//                 <button onClick={() => handleDeleteTask(task.id)} className="bg-red-500 text-white p-2 rounded">
-//                   Delete
-//                 </button>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-//       ) : (
-//         <p>Please sign in to manage your tasks.</p>
-//       )}
+//     <div className="flex flex-col items-center justify-center min-h-screen">
+//       <h1 className="text-3xl">Welcome! Please sign in.</h1>
+//       <button
+//         onClick={() => signIn('google')}
+//         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+//       >
+//         Sign in with Google
+//       </button>
 //     </div>
 //   );
 // }
 
 
-"use client";
 
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
 
-export default function HomePage() {
+export default function Home() {
   const { data: session } = useSession();
 
+  if (session) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-2xl">Signed in as {session.user?.name}</h1>
+        <img src={session.user?.image || ""} alt="Profile Image" className="rounded-full" />
+
+        <nav className="mt-4 space-x-4">
+          <Link href="/dashboard" className="px-4 py-2 bg-green-500 text-white rounded">
+            Go to Dashboard
+          </Link>
+          <Link href="/profile" className="px-4 py-2 bg-blue-500 text-white rounded">
+            View Profile
+          </Link>
+        </nav>
+
+        <button onClick={() => signOut()} className="mt-4 px-4 py-2 bg-red-500 text-white rounded">
+          Sign out
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      {session ? <p>Hello, {session.user?.name}</p> : <p>Please sign in</p>}
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-3xl">Welcome! Please sign in.</h1>
+      <button
+        onClick={() => signIn('google', { callbackUrl: `${window.location.origin}/dashboard` })}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Sign in with Google
+      </button>
     </div>
   );
 }

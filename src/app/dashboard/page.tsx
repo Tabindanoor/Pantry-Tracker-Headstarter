@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 
-export default function Profile() {
+export default function Dashboard() {
   const { data: session } = useSession();
 
   if (!session) {
@@ -9,9 +9,9 @@ export default function Profile() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-3xl">User Profile</h1>
-      <img src={session.user?.image || ""} alt="Profile Image" className="rounded-full" />
-      <p>Name: {session.user?.name}</p>
+      <h1 className="text-3xl">User Dashboard</h1>
+      <p>Welcome, {session.user?.name}</p>
+      <img src={session.user?.image || ""} alt="User Image" className="rounded-full" />
       <p>Email: {session.user?.email}</p>
     </div>
   );

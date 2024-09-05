@@ -19,8 +19,4 @@ export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-// Create the handler for both GET and POST
-const handler = NextAuth(authOptions);
-
-// Explicitly export for both GET and POST requests
-export { handler as GET, handler as POST };
+export default NextAuth(authOptions);
