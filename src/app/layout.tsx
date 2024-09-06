@@ -1,6 +1,5 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import SessionProviderWrapper from './SessionProviderWrapper'; // New wrapper
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProviderWrapper>{children}</SessionProviderWrapper> {/* Wrapped in provider */}
+        {children}
       </body>
     </html>
   );
