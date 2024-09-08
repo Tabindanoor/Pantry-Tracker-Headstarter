@@ -1,5 +1,8 @@
+// src/app/layout.tsx
+import { SessionProvider } from 'next-auth/react';
 import './globals.css';
 import { Inter } from 'next/font/google';
+import WrapperComponent from "./WrapperComponent"
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,9 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+     
       <body className={inter.className}>
-        {children}
+        <WrapperComponent>{children}</WrapperComponent> {/* Wrapped in provider */}
       </body>
     </html>
   );
 }
+
+
