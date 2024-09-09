@@ -1,24 +1,19 @@
-// src/app/dashboard/page.tsx
-import { getSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import prisma from "@/lib/prisma";
+import { useSession } from "next-auth/react";
 
-export default async function Dashboard() {
-  const session = await getSession();
-
-  if (!session) {
-    redirect("/auth/signin");
-  }
-
-  const user = await prisma.user.findUnique({
-    where: { email: session?.user?.email || "" },
-  });
+export default function Dashboard() {
+  const { data: session } = useSession();
 
   return (
-    <div className="mt-20 text-center">
-      <h1 className="text-2xl font-bold">Welcome, {user?.name}</h1>
-      <p className="mt-2">Email: {user?.email}</p>
-      <p className="mt-2">User ID: {user?.id}</p>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-2xl mb-4">Dashboard</h1>
+      {session?.user ? (
+        <div>
+          <p>Name: {session.user.name}</p>
+          <p>Email: {session.user.email}</p>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
