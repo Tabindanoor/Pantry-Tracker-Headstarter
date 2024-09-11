@@ -6,7 +6,6 @@ interface InputTypes{
  
 }
 
-
 const Input = ({name, type, placeholder, value}:InputTypes) => {
   return (
     <div>
