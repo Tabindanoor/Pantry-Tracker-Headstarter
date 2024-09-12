@@ -16,7 +16,7 @@ const Button = ({onClick, text, type, actionButton}:buttonProps) => {
          className={clsx(
                 actionButton && 
                 "bg-green-600 p-2",
-                "bg-purple-900 p-2" )} 
+                "bg-pink-500 p-2" )} 
         >
           {text}
         </button>

@@ -1,26 +1,28 @@
 import Form from '../ui/Form'
 import Input from '../ui/Input'
 import Button from '../ui/Button'
-import update from "@/app/actions/TodoActions"
+import { change  } from "@/app/actions/TodoActions"
+import { todoTypes } from '../../../types/todoTypes';
 
-const ChangeTodo = ({todo}) => {
+const ChangeTodo = ({ todo}: {todo:todoTypes}) => {
   return (
     <div>
-       <Form action={update}>
-            <Input 
-                name='inputId'
-                type='hidden'
-                value={todo.id  }
-            />
-            <Button
-                actionButton
-                type='submit'
-                text='Change'
-
-            />
-       </Form>
+      <Form action={change}>
+        {/* Hidden input to send the todo ID */}
+        <Input 
+          name="inputId"
+          type="hidden"
+          value={todo.id}
+        />
+        {/* Button to submit the form and trigger the update */}
+        <Button
+          actionButton
+          type="submit"
+          text="Change"
+        />
+      </Form>
     </div>
-  )
-}
+  );
+};
 
-export default ChangeTodo
+export default ChangeTodo;
