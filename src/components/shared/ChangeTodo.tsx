@@ -13,6 +13,7 @@ const ChangeTodo = ({ todo}: {todo:todoTypes}) => {
           name="inputId"
           type="hidden"
           value={todo.id}
+          
         />
         {/* Button to submit the form and trigger the update */}
         <Button
