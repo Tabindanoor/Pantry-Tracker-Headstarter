@@ -11,6 +11,7 @@ const Input = ({name, type, placeholder, value}:InputTypes) => {
     <div>
       <input
       className="bg-blend-darken rounded-e-md font-bold "
+      className="bg-blend-darken rounded-e-md font-bold "
         name={name}
         type={type}
         placeholder={placeholder}
