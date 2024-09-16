@@ -21,7 +21,7 @@ const EditTodo = ({todo}:{todo:todoTypes}) => {
     }
 
   return (
-    <div>
+    <div className='flex justify-between'>
 
 <Button
                 actionButton
@@ -34,14 +34,15 @@ const EditTodo = ({todo}:{todo:todoTypes}) => {
 <div>
     {
         editTodo ? <Form  action={edit}
-                    onSubmit={handleSubmit} >
+                    onSubmit={handleSubmit}
+                    className='flex justify-between' >
         <Input
             name="inputId" 
             type="hidden"
             value={todo.id}
 
         />
-    <div> 
+    <div className='flex '> 
         
         <Input
             name="inputTitle" 
