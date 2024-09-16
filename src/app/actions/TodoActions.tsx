@@ -3,6 +3,27 @@
 import { revalidatePath } from "next/cache"
 import { prisma } from "../../../utils/prisma"
 
+//  this is added for getting todos in the search query
+export async function getTodos(searchQuery: string = '') {
+  const todos = await prisma.todo.findMany({
+    where: {
+      title: {
+        contains: searchQuery,
+        mode: 'insensitive',
+      },
+    },
+    select: {
+      id: true,
+      title: true,
+      isCompleted: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+  return todos;
+}
+
 export default async function create(formData:FormData) {
   const input = formData.get("input")  as string
 
