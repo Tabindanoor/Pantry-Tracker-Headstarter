@@ -84,14 +84,20 @@ const Todo = ({ todo }: { todo: todoTypes }) => {
   };
 
   return (
-    <div className="flex items-center justify-between rounded-lg shadow-lg mb-4 hover:bg-gray-100 transition-all duration-300">
+    <div className=" w-[500px] mx-auto items-center justify-center rounded-lg  transition-all duration-300">
       {/* Display todo title */}
-      <p className="flex-1 text-lg font-medium" style={todoStyle}>
+      {/* <p className="flex-1 text-lg  " style={todoStyle}>
         {todo.title}
-      </p>
+      </p> */}
+
+
+<p style={todoStyle} className=" text-lg text-center  font-semibold text-gray-800 p-4 transition-all duration-300 ease-in-out">
+  {todo.title}
+</p>
+
 
       {/* Action buttons */}
-      <div className="flex space-x-2">
+      <div className="flex space-x-2 mx-auto items-center justify-center">
         {/* ChangeTodo Button */}
         <ChangeTodo todo={todo} />
         

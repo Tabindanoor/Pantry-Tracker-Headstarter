@@ -86,6 +86,8 @@ const Home = async () => {
           </div>
         ))}
       </div>
+      <br /><br />
+
     </div>
   );
 };
