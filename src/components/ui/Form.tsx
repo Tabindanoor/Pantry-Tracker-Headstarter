@@ -5,7 +5,7 @@ interface formTypes {
   className? : string
   children : ReactNode
   action : (formData:FormData )=>Promise<void | boolean>
-  onSubmit : (e: React.FormEvent) => void
+  onSubmit : (e: React.FormEvent<HTMLFormElement>) => void
 }
 const Form = ({className, children, action, onSubmit}:formTypes) => {
 

@@ -3,12 +3,17 @@ import Button from "../ui/Button"
 import Form from "../ui/Form"
 import Input from "../ui/Input"
 
+
 const AddTodo = () => {
+  const submitForm=()=>{
+    // Add your logic here to add the new todo to the store
+
+  }
   return (
 
 
        <div>
-                <Form action={create} className="flex justify-center ">                        
+                <Form onSubmit={submitForm} action={create} className="flex justify-center ">                        
 
             <div className="flex justify-between">
                 <Input
@@ -19,9 +24,6 @@ const AddTodo = () => {
                 <Button
                   type="submit"
                   text="Add"
-                 
-
-
                 /> 
             </div>
            
