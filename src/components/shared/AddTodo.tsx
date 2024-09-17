@@ -5,15 +5,12 @@ import Input from "../ui/Input"
 
 
 const AddTodo = () => {
-  const submitForm=()=>{
-    // Add your logic here to add the new todo to the store
 
-  }
   return (
 
 
        <div>
-                <Form onSubmit={submitForm} action={create} className="flex justify-center ">                        
+                <Form action={create} className="flex justify-center ">                        
 
             <div className="flex justify-between">
                 <Input
