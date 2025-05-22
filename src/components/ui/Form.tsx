@@ -4,8 +4,9 @@ import { useRef, ReactNode } from "react"
 interface formTypes {
   className? : string
   children : ReactNode
-  action : (formData:FormData )=>Promise<void | boolean>
-  onSubmit : (e: React.FormEvent<HTMLFormElement>) => void
+  action: (formData: FormData) => Promise<any>  // allow any return type
+  // action : (formData:FormData )=>Promise<void | boolean>
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void
 }
 const Form = ({className, children, action, onSubmit}:formTypes) => {
 

@@ -48,13 +48,6 @@ const EditTodo = ({todo}:{todo:todoTypes}) => {
 />
 
 
-{/* <Button
-                actionButton
-                type="submit"
-                text="edit"
-                onClick={handleEdit}
-            /> */}
-
        
 <div>
     {

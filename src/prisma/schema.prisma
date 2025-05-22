@@ -8,17 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
-
-
-// model Todo {
-//   id          String   @id @default(auto()) @map("_id")
-//   title       String
-//   isCompleted Boolean
-//   createdAt   DateTime @default(now())
-// }
-
 model Todo {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
@@ -26,13 +15,3 @@ model Todo {
   createdAt   DateTime @default(now()) @db.Timestamp
 }
 
-
-// model User {
-//   id            String   @id @default(auto()) @map("_id") @db.ObjectId
-//   name          String
-//   email         String   @unique
-//   password      String?
-//   image         String?
-//   createdAt     DateTime @default(now())
-//   updatedAt     DateTime @updatedAt
-// }
