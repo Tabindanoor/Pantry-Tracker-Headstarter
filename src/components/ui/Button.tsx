@@ -13,10 +13,6 @@ const Button = ({onClick, text, type, actionButton}:buttonProps) => {
         <button
          onClick={onClick} 
          type={type}
-        //  className={clsx(
-        //         actionButton && 
-        //         "bg-green-600  p-2",
-        //         "bg-pink-600 p-2" )} 
          className={clsx(
     actionButton
       ? "bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700"
