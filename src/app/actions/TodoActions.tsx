@@ -3,9 +3,34 @@
 import { revalidatePath } from "next/cache"
 import { prisma } from "../../../utils/prisma"
 
-//  this is added for getting todos in the search query
-export async function getTodos(searchQuery: string = '') {
+// //  this is added for getting todos in the search query
+// export async function getTodos(searchQuery: string = '') {
+//   const todos = await prisma.todo.findMany({
+//     take: 10, // Limit number of records
+//   skip: 0, // Use for pagination
+//     where: {
+//       title: {
+//         contains: searchQuery,
+//         mode: 'insensitive',
+//       },
+//     },
+//     select: {
+//       id: true,
+//       title: true,
+//       isCompleted: true,
+//     },
+//     orderBy: {
+//       createdAt: 'desc',
+//     },
+//   });
+//   return todos;
+// }
+export async function getTodos(searchQuery: string = '', page: number = 1, limit: number = 10) {
+  const skip = (page - 1) * limit;
+
   const todos = await prisma.todo.findMany({
+    take: limit,
+    skip: skip,
     where: {
       title: {
         contains: searchQuery,
@@ -21,6 +46,7 @@ export async function getTodos(searchQuery: string = '') {
       createdAt: 'desc',
     },
   });
+
   return todos;
 }
 
