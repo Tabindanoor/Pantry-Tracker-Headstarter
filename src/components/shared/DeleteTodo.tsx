@@ -58,30 +58,27 @@
 
 
 
-'use client'
+"use client"
+import React from "react"
+import { todoTypes } from "../../../types/todoTypes"
+import Form from "../ui/Form"
+import Button from "../ui/Button"
+import { deleteTodo } from "@/app/actions/TodoActions"
+import Input from "../ui/Input"
+import { useRouter } from "next/navigation"
+import { useTransition } from "react"
 
-import React from 'react'
-import { useRouter } from 'next/navigation'
-import { useTransition } from 'react'
-import { todoTypes } from '../../../types/todoTypes'
-import Form from '../ui/Form'
-import Button from '../ui/Button'
-import { deleteTodo } from '@/app/actions/TodoActions'
-import Input from '../ui/Input'
 const DeleteTodo = ({ todo }: { todo: todoTypes }) => {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
 
-  // Wrap deleteTodo action
+  // Wrap the deleteTodo action to refresh page after success
   const handleDelete = async (formData: FormData) => {
-  console.log("Deleting todo...",todo);
-  await deleteTodo(formData);
-  startTransition(() => {
-    console.log("Refreshing router...");
-    router.refresh();
-  });
-};
-
+    await deleteTodo(formData)
+    startTransition(() => {
+      router.refresh()  // refreshes server components, updating UI
+    })
+  }
 
   return (
     <div>
