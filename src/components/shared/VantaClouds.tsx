@@ -132,7 +132,7 @@ const VantaClouds = () => {
         left: 0,
         width: "100vw",
         height: "100vh",
-        zIndex: -1, // Make sure it's behind the content
+        zIndex: -1, 
       }}
     />
   );
