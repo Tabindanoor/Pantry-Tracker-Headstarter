@@ -56,7 +56,7 @@
 
 
 // app/page.tsx
-
+export const dynamic = 'force-dynamic';
 import { getTodos } from '../app/actions/TodoActions';
 import AddTodo from '@/components/shared/AddTodo';
 import Todo from '@/components/shared/Todo';
